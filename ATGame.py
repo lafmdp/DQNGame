@@ -5,12 +5,12 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 SCREEN_SIZE = [320, 400]
-BAR_SIZE = [5, 5]
+BAR_SIZE = [20, 5]
 BALL_SIZE = [15, 15]
 
 # 神经网络的输出
-MOVE_STAY = [1, 0, 0]
-MOVE_LEFT = [0, 1, 0]
+MOVE_STAY = [0, 1, 0]
+MOVE_LEFT = [1, 0, 0]
 MOVE_RIGHT = [0, 0, 1]
 
 class Game(object):
@@ -18,7 +18,7 @@ class Game(object):
         pygame.init()
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
-        pygame.display.set_caption('Simple Game')
+        pygame.display.set_caption('Atari')
 
         self.ball_pos_x = SCREEN_SIZE[0] // 2 - BALL_SIZE[0] / 2
         self.ball_pos_y = SCREEN_SIZE[1] // 2 - BALL_SIZE[1] / 2

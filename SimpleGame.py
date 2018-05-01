@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 import random
@@ -82,9 +86,10 @@ def train_neural_network(input_image):
     input_image_data = np.stack((image, image, image, image), axis=2)
 
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
 
         saver = tf.train.Saver()
+        saver.restore(sess,'d:\\game model\\Atari')
 
         n = 0
         epsilon = INITIAL_EPSILON
@@ -113,6 +118,7 @@ def train_neural_network(input_image):
                 D.popleft()
 
             if n > OBSERVE:
+
                 minibatch = random.sample(D, BATCH)
                 input_image_data_batch = [d[0] for d in minibatch]
                 argmax_batch = [d[1] for d in minibatch]
@@ -132,7 +138,7 @@ def train_neural_network(input_image):
             n = n + 1
 
             if n % 30000 == 0:
-                saver.save(sess, 'd:\\game.cpk', global_step=n)  # 保存模型
+                saver.save(sess, 'd:\\game model\\Atari')  # 保存模型
 
             print(n, "epsilon:", epsilon, " ", "action:", maxIndex, " ", "reward:", reward)
 
