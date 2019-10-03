@@ -1,3 +1,3 @@
 # DQNGame
 
-Use DQN Algorithm to train a simple game
+Use DQN Algorithm to train a break-out
